@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  footer:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -61,7 +61,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/images/background_buildings.png
-
+  - assets/images/logo-ip.png
   fonts:
     - family: InriaSerif
       fonts:

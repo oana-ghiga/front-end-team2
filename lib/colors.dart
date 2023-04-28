@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 const MaterialColor primaryblue = MaterialColor(_primarybluePrimaryValue, <int, Color>{
   50: Color(0xFFE2E4E6),
   100: Color(0xFFB7BBBF),
-  200: Color(0xFF888E95),
-  300: Color(0xFF58606B),
-  400: Color(0xFF343E4B),
+  200: Color(0xFF5C738E),
+  300: Color(0xFF3A495B),
+  400: Color(0xFF293441),
   500: Color(_primarybluePrimaryValue),
   600: Color(0xFF0E1926),
   700: Color(0xFF0C1420),
