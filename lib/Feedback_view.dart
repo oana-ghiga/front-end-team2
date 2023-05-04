@@ -506,7 +506,9 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                       SizedBox(height: 10),
                       ElevatedButton(
                         onPressed: () {
-                          // Add code here to handle user feedback
+                          if(feedbackController.text.isEmpty){
+                          print("pula");
+                         }
                         },
                         child: Text('Submit'),
                       ),
