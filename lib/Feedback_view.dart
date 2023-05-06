@@ -1,6 +1,10 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'package:footer/footer.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const FeedbackView());
@@ -56,133 +60,133 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-        Image(image: AssetImage('assets/images/logo-ip.png'),
-                height: screenWidth < 700 ? 40.0 : 60.0),
-          ],
-        ),
-        backgroundColor: primaryColor,
-        toolbarHeight: screenWidth < 700 ? 60.0 : 70.0,
-        actions: [
-          MouseRegion(
-            onHover: (PointerEvent details) {
-              setState(() {
-                hovering1 = true;
-              });
-            },
-            onExit: (PointerEvent details) {
-              setState(() {
-                hovering1 = false;
-              });
-            },
-            child: ElevatedButton(
-              onPressed: () {
-                //home button press
+          title: Row(
+            children: [
+              Image(image: AssetImage('assets/images/logo-ip.png'),
+                  height: screenWidth < 700 ? 40.0 : 60.0),
+            ],
+          ),
+          backgroundColor: primaryColor,
+          toolbarHeight: screenWidth < 700 ? 60.0 : 70.0,
+          actions: [
+            MouseRegion(
+              onHover: (PointerEvent details) {
+                setState(() {
+                  hovering1 = true;
+                });
               },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryColor,
-                  padding: EdgeInsets.symmetric(horizontal: 0.0)),
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                    horizontal: screenWidth < 700 ? 0.0 : 30.0),
-                child: Text(
-                  'Home',
-                  style: TextStyle(
-                      fontSize: screenWidth < 700 ? 13 : 17,
-                      color: hovering1 ? borderColor : Colors.white),
-                ),
-              ),
-            ),
-          ),
-          MouseRegion(
-            onHover: (PointerEvent details) {
-              setState(() {
-                hovering2 = true;
-              });
-            },
-            onExit: (PointerEvent details) {
-              setState(() {
-                hovering2 = false;
-              });
-            },
-            child: ElevatedButton(
+              onExit: (PointerEvent details) {
+                setState(() {
+                  hovering1 = false;
+                });
+              },
+              child: ElevatedButton(
                 onPressed: () {
-                  //institution button press
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    padding: EdgeInsets.symmetric(horizontal: 5.0)),
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth < 700 ? 0.0 : 30.0),
-                  child: Text(
-                    'Institutions',
-                    style: TextStyle(
-                        fontSize: screenWidth < 700 ? 13 : 17,
-                        color: hovering2 ? borderColor : Colors.white),
-                  ),
-                )),
-          ),
-          MouseRegion(
-            onHover: (PointerEvent details) {
-              setState(() {
-                hovering3 = true;
-              });
-            },
-            onExit: (PointerEvent details) {
-              setState(() {
-                hovering3 = false;
-              });
-            },
-            child: ElevatedButton(
-                onPressed: () {
-                  //contact button press
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: primaryColor,
-                    padding: EdgeInsets.symmetric(horizontal: 5.0)),
-                child: Container(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth < 700 ? 0.0 : 30.0),
-                  child: Text(
-                    'Contact',
-                    style: TextStyle(
-                        fontSize: screenWidth < 700 ? 13 : 17,
-                        color: hovering3 ? borderColor : Colors.white),
-                  ),
-                )),
-          ),
-          MouseRegion(
-            onHover: (PointerEvent details) {
-              setState(() {
-                hovering4 = true;
-              });
-            },
-            onExit: (PointerEvent details) {
-              setState(() {
-                hovering4 = false;
-              });
-            },
-            child: ElevatedButton(
-                onPressed: () {
-                  //My Account button press
+                  //home button press
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: primaryColor,
                     padding: EdgeInsets.symmetric(horizontal: 0.0)),
                 child: Container(
                   padding: EdgeInsets.symmetric(
-                      horizontal: screenWidth < 700 ? 7.0 : 30.0),
+                      horizontal: screenWidth < 700 ? 0.0 : 30.0),
                   child: Text(
-                    'My Account',
+                    'Home',
                     style: TextStyle(
                         fontSize: screenWidth < 700 ? 13 : 17,
-                        color: hovering4 ? borderColor : Colors.white),
+                        color: hovering1 ? borderColor : Colors.white),
                   ),
-                )),
-          ),
-        ],
+                ),
+              ),
+            ),
+            MouseRegion(
+              onHover: (PointerEvent details) {
+                setState(() {
+                  hovering2 = true;
+                });
+              },
+              onExit: (PointerEvent details) {
+                setState(() {
+                  hovering2 = false;
+                });
+              },
+              child: ElevatedButton(
+                  onPressed: () {
+                    //institution button press
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      padding: EdgeInsets.symmetric(horizontal: 5.0)),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth < 700 ? 0.0 : 30.0),
+                    child: Text(
+                      'Institutions',
+                      style: TextStyle(
+                          fontSize: screenWidth < 700 ? 13 : 17,
+                          color: hovering2 ? borderColor : Colors.white),
+                    ),
+                  )),
+            ),
+            MouseRegion(
+              onHover: (PointerEvent details) {
+                setState(() {
+                  hovering3 = true;
+                });
+              },
+              onExit: (PointerEvent details) {
+                setState(() {
+                  hovering3 = false;
+                });
+              },
+              child: ElevatedButton(
+                  onPressed: () {
+                    //contact button press
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      padding: EdgeInsets.symmetric(horizontal: 5.0)),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth < 700 ? 0.0 : 30.0),
+                    child: Text(
+                      'Contact',
+                      style: TextStyle(
+                          fontSize: screenWidth < 700 ? 13 : 17,
+                          color: hovering3 ? borderColor : Colors.white),
+                    ),
+                  )),
+            ),
+            MouseRegion(
+              onHover: (PointerEvent details) {
+                setState(() {
+                  hovering4 = true;
+                });
+              },
+              onExit: (PointerEvent details) {
+                setState(() {
+                  hovering4 = false;
+                });
+              },
+              child: ElevatedButton(
+                  onPressed: () {
+                    //My Account button press
+                  },
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      padding: EdgeInsets.symmetric(horizontal: 0.0)),
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: screenWidth < 700 ? 7.0 : 30.0),
+                    child: Text(
+                      'My Account',
+                      style: TextStyle(
+                          fontSize: screenWidth < 700 ? 13 : 17,
+                          color: hovering4 ? borderColor : Colors.white),
+                    ),
+                  )),
+            ),
+          ],
           bottom: PreferredSize(
               preferredSize: const Size.fromHeight(3.0),
               child: Container(
@@ -267,21 +271,15 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
       'feedback': [
         {
           'user': 'User1',
-          'document': 'Identity Card',
+          'document': 'Complaint',
           'comment':
-              'The service was fast and efficient, I got my ID card in less than 30 minutes! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'I had a complaint about noise pollution in my neighborhood and the Municipal Police took care of it in a timely manner. Great job! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
         {
           'user': 'User2',
-          'document': 'Propriety Tax',
-          'comment':
-              'The online platform for paying my propriety tax was easy to use, but I wish there were more payment options available. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
-        },
-        {
-          'user': 'User3',
           'document': 'Complaint',
           'comment':
-              'I had a complaint about a pothole on my street and the City Hall responded promptly and fixed it within a week. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'I reported a theft in my apartment and the Municipal Police investigated it thoroughly and recovered my stolen items. Thank you for your hard work! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
       ]
     },
@@ -292,13 +290,13 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
           'user': 'User1',
           'document': 'Complaint',
           'comment':
-              'I had a complaint about noise pollution in my neighborhood and the Municipal Police took care of it in a timely manner. Great job! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'I had a complaint about noise pollution in my neighborhood and the Municipal Police took care of it in a timely manner. Great job! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
         {
           'user': 'User2',
           'document': 'Complaint',
           'comment':
-              'I reported a theft in my apartment and the Municipal Police investigated it thoroughly and recovered my stolen items. Thank you for your hard work! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'I reported a theft in my apartment and the Municipal Police investigated it thoroughly and recovered my stolen items. Thank you for your hard work! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
       ]
     },
@@ -309,13 +307,13 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
           'user': 'User1',
           'document': 'Divorce Certificate',
           'comment':
-              'The process of getting a divorce certificate was smooth and hassle-free. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'The process of getting a divorce certificate was smooth and hassle-free. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
         {
           'user': 'User2',
           'document': 'Marriage Certificate',
           'comment':
-              'The Court House staff were very helpful in guiding me through the process of getting a marriage certificate. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'The Court House staff were very helpful in guiding me through the process of getting a marriage certificate. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
       ]
     },
@@ -326,19 +324,19 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
           'user': 'User1',
           'document': 'Driver\'s License',
           'comment':
-              'The process of getting a driver\'s license was straightforward and the staff were helpful in answering my questions. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'The process of getting a driver\'s license was straightforward and the staff were helpful in answering my questions. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
         {
           'user': 'User2',
           'document': 'Vehicle Registration',
           'comment':
-              'I had to register my new car and the online platform for doing so was easy to use and saved me a lot of time. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'I had to register my new car and the online platform for doing so was easy to use and saved me a lot of time. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
         {
           'user': 'User3',
           'document': 'Driver\'s License',
           'comment':
-              'I had to renew my driver\'s license and the process was quick and efficient. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
+          'I had to renew my driver\'s license and the process was quick and efficient. Thank you! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo sit amet felis a egestas. Sed eu nisi quis dolor suscipit eleifend. Praesent faucibus ultricies sem vitae gravida. Quisque lacinia faucibus arcu vel tincidunt. Suspendisse potenti. Pellentesque id sodales sapien. '
         },
       ]
     }
@@ -358,6 +356,8 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
 // Feedback text controller
   final TextEditingController feedbackController = TextEditingController();
 
+  int ratingValue = 1;
+
   // Display the feedback for the currently selected institution
   List<Widget> displayFeedback(List<Map<String, dynamic>> feedbackList) {
     return feedbackList.map((feedback) {
@@ -376,7 +376,7 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${feedback['user']} - ${feedback['document']} ',
+                '${feedback['user']} - ${feedback['document'] } ',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               SizedBox(height: 25),
@@ -414,16 +414,35 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                     items: institutions
                         .map(
                           (institution) => DropdownMenuItem(
-                            child: Text('Feedback for ' + institution,
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
-                            value: institution,
-                          ),
-                        )
+                        child: Text('Feedback for ' + institution,
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold)),
+                        value: institution,
+                      ),
+                    )
                         .toList(),
-                    onChanged: (value) {
+                    onChanged: (value) async {
+
+                      int index = institutions.indexOf(selectedInstitution);
+                      String indexString = index.toString();
+                      List<Feedback> feedbackWaitedResult = await fetchFeedbacks(indexString);
+                      // List<Feedback> fedbec2 = feedbackWaitedResult;
+                      //List<Feedback> fedbec2 = null;
+                      for(Feedback fb in feedbackWaitedResult) {
+                        Map<String,String> fedbec1 = {
+                          'user': 'User${fb.userId}',
+                          //'rating' : fb.rating.toString(),
+                          'document': 'document column doesnt exist in db',
+                          'comment':  fb.comment.toString(),
+                        };
+                        feedbacks[index-1]['feedback'].add(fedbec1);
+                      }
+                      print("dropdown bla $value");
+                      print("this is indexString$indexString");
+
                       setState(() {
                         selectedInstitution = value!;
+                        int index = institutions.indexOf(selectedInstitution);
                       });
                     },
                   ),
@@ -434,19 +453,18 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                 child: LayoutBuilder(
                   builder: (context, constraints) {
                     return SingleChildScrollView(
-                        child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            minHeight: MediaQuery.of(context).size.height,
-                          ),
-                          child: Container(
-                            width: MediaQuery.of(context).size.height*0.65,
-                            child: ListView.builder(
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          minHeight: MediaQuery.of(context).size.height,
+                        ),
+                        child: Container(
+                          width: MediaQuery.of(context).size.height*0.65,
+                          child: ListView.builder(
                             shrinkWrap: true,
                             itemCount: feedbacks.length,
                             itemBuilder: (context, index) {
                               final feedback = feedbacks[index];
-                              if (feedback['institution'] ==
-                                  selectedInstitution) {
+                              if (feedback['institution'] == selectedInstitution) {
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Container(
@@ -460,7 +478,7 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                                     ),
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         ...displayFeedback(
                                             feedback['feedback']),
@@ -473,7 +491,7 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                             },
                           ),
                         ),
-                    ),
+                      ),
                     );
                   },
                 ),
@@ -497,6 +515,7 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                       ),
                       SizedBox(height: 10),
                       TextField(
+                        controller: feedbackController,
                         decoration: InputDecoration(
                           hintText: 'Enter your feedback here...',
                           border: OutlineInputBorder(),
@@ -504,11 +523,73 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                         maxLines: 5,
                       ),
                       SizedBox(height: 10),
+                      Row(
+                        children: [
+                          Expanded(
+                            flex: 1,
+                            child: Text(
+                              'Rating:',
+                              textAlign: TextAlign.right,
+                            ),
+                          ),
+                          Container(width: 16.0), // Empty container to create space
+                          DropdownButton<int>(
+                            value: ratingValue,
+                            onChanged: (value) {
+                              setState(() {
+                                ratingValue = value!;
+                              });
+                            },
+                            items: List.generate(
+                              5,
+                                  (index) => DropdownMenuItem<int>(
+                                value: index,
+                                child: Text(
+                                  (index).toString(),
+                                  textAlign: TextAlign.right,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
                       ElevatedButton(
-                        onPressed: () {
-                          if(feedbackController.text.isEmpty){
-                          print("pula");
-                         }
+                        onPressed: () async {
+                          int index = institutions.indexOf(selectedInstitution) + 1;
+                          String indexString = index.toString();
+                          print("this is indexString $indexString");
+                          Map<String,String> fedbec1 = {
+                            'user': 'ME',
+                            //'rating' : ratingValue.toString(),
+                            'document': 'Complaint',
+                            'comment':  feedbackController.text,
+                          };
+
+                          String backendUrl = "http://127.0.0.1:6969/api/review/reviewInstitution";
+                          final response =
+                          await http.post(Uri.parse(backendUrl), body: {
+                            'comment': feedbackController.text,
+                            'rating': ratingValue.toString(),
+                            'user_id': "1",
+                            'institution_id': indexString,
+                          });
+                          if (feedbackController.text.isEmpty) {
+                            print("Feedback is empty");
+                          }
+                          if (response.statusCode == 200) {
+                            // gut request
+                            feedbacks[index-1]['feedback'].add(fedbec1);
+                            print("feedback added to db successfully");
+                          }
+                          else {
+                            int statuscode = response.statusCode;
+                            print("${response.body} $statuscode");
+                          }
+                          setState(() {
+                            //DO NOT REMOVE THIS
+                            //IF YOU REMOVE THIS ALL CODE BREAKS!!!!!!!!!!!!!!!!!!!!!
+                          });
                         },
                         child: Text('Submit'),
                       ),
@@ -525,6 +606,59 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
   }
 }
 
+
+
+Future<List<Feedback>> fetchFeedbacks(String institutionId) async {
+  final response =
+  await http.get(Uri.parse('http://127.0.0.1:6969/api/review/reviewInstitution?institution=$institutionId'));
+   print(response.body);
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    final List<dynamic> jsonList = jsonDecode(response.body);
+    return jsonList.map((json) => Feedback.fromJson(json)).toList();
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load albums $response.statusCode');
+  }
+}
+
+class Feedback {
+  final int? feedbackId;
+  final int? rating;
+  final String? comment;
+  final String? createdAt;
+  final int? userId;
+  final int? institutionId;
+
+  const Feedback({
+    required this.feedbackId,
+    required this.rating,
+    required this.comment,
+    required this.createdAt,
+    required this.userId,
+    required this.institutionId,
+  });
+
+  factory Feedback.fromJson(Map<String, dynamic> json) {
+    return Feedback(
+      feedbackId: json['feedback_id'],
+      rating: json['rating'],
+      comment: json['comment'],
+      createdAt: json['created_at'],
+      userId: json['user_id'],
+      institutionId: json['institution_id'],
+    );
+  }
+
+  @override
+  String toString() {
+    return 'Feedback{rating: $rating, comment: $comment, userId: $userId}\n';
+  }
+}
+
+
 class FeedbackListPage extends StatefulWidget {
   @override
   _FeedbackListPageState createState() => _FeedbackListPageState();
@@ -532,26 +666,6 @@ class FeedbackListPage extends StatefulWidget {
 
 class _FeedbackListPageState extends State<FeedbackListPage> {
   List<Map<String, dynamic>> feedbacks = [
-    {
-      'institution': 'City Hall',
-      'feedbackEntries': [
-        {
-          'user': 'User1',
-          'document': 'Identity Card',
-          'feedback': 'Great service!'
-        },
-        {
-          'user': 'User2',
-          'document': 'Propriety Tax',
-          'feedback': 'Long waiting times.'
-        },
-        {
-          'user': 'User3',
-          'document': 'Complaint',
-          'feedback': 'Prompt response.'
-        },
-      ],
-    },
     {
       'institution': 'Municipal Police',
       'feedbackEntries': [
@@ -590,8 +704,8 @@ class _FeedbackListPageState extends State<FeedbackListPage> {
         itemBuilder: (BuildContext context, int index) {
           Map<String, dynamic> institutionData = feedbacks[index];
           List<Map<String, String>> feedbackEntries =
-              List<Map<String, String>>.from(
-                  institutionData['feedbackEntries']);
+          List<Map<String, String>>.from(
+              institutionData['feedbackEntries']);
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
