@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
@@ -95,7 +96,22 @@ class _MyRegistrationPageState extends State<MyRegistrationPage> {
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
+                try {
+                  String backendUrl = "http://127.0.0.1:6969/api/auth/register";
+                  final response =
+                  await http.post(Uri.parse(backendUrl), body: {
+                    'username': 'fraier',
+                    'password': 'fraier',
+                    'name': 'fraier',
+                    'surname': 'fraier',
+                    'email': 'fraier@fraier.com',
+                    'phone_number': '0012345681',
+                    'city': 'Fraieresti',
+                  });
+                } catch(e) {
+                  print('Error: $e');
+                }
                 String username = _usernameController.text;
                 String password = _passwordController.text;
                 String email = _emailController.text;

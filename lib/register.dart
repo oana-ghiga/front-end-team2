@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'colors.dart';
+import 'package:http/http.dart' as http;
+
 void main() {
+
   runApp(const Register(
   ));
 }
@@ -43,35 +48,35 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          TextButton(
-            onPressed: () {},
-            style: MyButtonStyle.flatButtonStyle,
-            child: const Text('Home'),
-          ),
-          TextButton(
-            onPressed: () {},
-            style: MyButtonStyle.flatButtonStyle,
-            child: const Text('Institution',),
-          ),
-          TextButton(
-            onPressed: () {},
-            style: MyButtonStyle.flatButtonStyle,
-            child: const Text('Contact'),
-          ),
-          TextButton(
-            onPressed: () {},
-            style: MyButtonStyle.flatButtonStyle,
-            child: const Text('My Account'),
-          ),
-        ],
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(3.0),
-          child: Container(
-            height: 3.0,
-            color: burntgold.shade700,
+          actions: [
+            TextButton(
+              onPressed: () {},
+              style: MyButtonStyle.flatButtonStyle,
+              child: const Text('Home'),
+            ),
+            TextButton(
+              onPressed: () {},
+              style: MyButtonStyle.flatButtonStyle,
+              child: const Text('Institution',),
+            ),
+            TextButton(
+              onPressed: () {},
+              style: MyButtonStyle.flatButtonStyle,
+              child: const Text('Contact'),
+            ),
+            TextButton(
+              onPressed: () {},
+              style: MyButtonStyle.flatButtonStyle,
+              child: const Text('My Account'),
+            ),
+          ],
+          bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(3.0),
+              child: Container(
+                height: 3.0,
+                color: burntgold.shade700,
+              )
           )
-        )
       ),
       body: Stack(
         children: [
@@ -90,26 +95,26 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.only(top: kToolbarHeight),
               child: SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
-                 child: Center(
-                   child: Container(
+                child: Center(
+                  child: Container(
 
-                  width: MediaQuery.of(context).size.width * 0.6,
-                  height: MediaQuery.of(context).size.height / 1.5,
-                  padding: const EdgeInsets.all(16.0),
-                  decoration: BoxDecoration(
-                    color: primaryblue.shade500,
-                    border: Border.all(
-                      color: burntgold.shade700,
-                      width: 3.0,
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    height: MediaQuery.of(context).size.height / 1.5,
+                    padding: const EdgeInsets.all(16.0),
+                    decoration: BoxDecoration(
+                      color: primaryblue.shade500,
+                      border: Border.all(
+                        color: burntgold.shade700,
+                        width: 3.0,
+                      ),
+                      borderRadius: BorderRadius.circular(20.0),
                     ),
-                    borderRadius: BorderRadius.circular(20.0),
+                    child: RegistrationPage(),
                   ),
-                  child: RegistrationPage(),
-                  ),
-                ),
                 ),
               ),
             ),
+          ),
         ],
       ),
     );
@@ -118,11 +123,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
 class MyButtonStyle {
   static final ButtonStyle flatButtonStyle = TextButton.styleFrom(
-    foregroundColor: burntgold.shade200,
+      foregroundColor: burntgold.shade200,
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(24.0),
-    ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24.0),
+      ),
       textStyle: const TextStyle(
         fontFamily: 'InriaSerif',
         fontWeight: FontWeight.normal,
@@ -132,6 +137,7 @@ class MyButtonStyle {
 }
 
 class RegistrationPage extends StatefulWidget {
+
   @override
   _RegistrationPageState createState() => _RegistrationPageState();
 }
@@ -145,6 +151,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final _addressController = TextEditingController();
   final _nameController = TextEditingController();
   final _surnameController = TextEditingController();
+
 
   @override
   void dispose() {
@@ -172,7 +179,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-             child: Form(
+              child: Form(
                 key: _formKey,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,6 +199,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: TextFormField(
+                              controller: _usernameController,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.only(bottom: 16.0, left: 10),
@@ -231,6 +239,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: TextFormField(
+                              controller: _passwordController,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.only(bottom: 16.0, left: 10),
@@ -269,6 +278,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: TextFormField(
+                              controller: _emailController,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.only(bottom: 16.0, left: 10),
@@ -310,6 +320,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: TextFormField(
+                              controller: _phoneNumberController,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.only(bottom: 16.0, left: 10),
@@ -348,6 +359,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: TextFormField(
+                              controller: _addressController,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.only(bottom: 16.0, left: 10),
@@ -386,6 +398,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               borderRadius: BorderRadius.circular(20.0),
                             ),
                             child: TextFormField(
+                              controller: _nameController,
                               style: const TextStyle(color: Colors.white),
                               decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.only(bottom: 16.0, left: 10),
@@ -424,6 +437,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             borderRadius: BorderRadius.circular(20.0),
                           ),
                           child: TextFormField(
+                            controller: _surnameController,
                             style: const TextStyle(color: Colors.white),
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.only(bottom: 16.0, left: 10),
@@ -452,9 +466,52 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
                     const SizedBox(height: 16.0),
                     ElevatedButton(
-                      onPressed: () {
-                        // Perform registration action
+                      onPressed: () async {
+                        try {
+                          String backendUrl = "127.0.0.1:6969";
+                          final response =
+                          await http.post(Uri.http(backendUrl, '/api/auth/register' ),
+                              headers: {
+                                "Access-Control-Allow-Origin": "*",
+                                'Content-Type': 'application/json',
+                                'Accept': '*/*'
+                              },
+                              body: jsonEncode(<String, String>{
+                            'username': 'fraiere1',
+                            'password': 'frai3er1',
+                            'name': 'fraeier2',
+                            'surname': 'fraeier3',
+                            'email': 'fraier@fraeier.com4',
+                            'phone_number': '00123e455681',
+                            'city': 'Fraie35eresti',
+                          }));
+                        } catch(e) {
+                          print('Error: $e');
+                        }
+                        /*if (response.statusCode == 200) {
+                          // Registration successful
+                          Navigator.pushNamed(context, '/login');
+                        } else if (response.statusCode == 409) {
+                          // Registration failed due to duplicate information
+                          showDialog(
+                            context: context,
+                            builder: (_) => AlertDialog(
+                              title: Text("Duplicate Information"),
+                              content: Text("The information you submitted is already taken, please try again"),
+                              actions: [
+                                ElevatedButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: Text("OK"),
+                                ),
+                              ],
+                            ),
+                          );
+                        } else {
+                          // Registration failed
+                          print("Registration failed");
+                        }*/
                       },
+
                       style: ElevatedButton.styleFrom(
                         backgroundColor: burntgold.shade500,
                         elevation: 0,
@@ -481,24 +538,25 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ],
                 ),
               ),
+            ),
           ),
         ),
-      ),
       ),
     );
   }
 }
 
+
 ElevatedButton myElevatedButton({required VoidCallback onPressed, required Widget child}) {
-  return ElevatedButton(onPressed: onPressed, child: child);
+  return ElevatedButton(onPressed:onPressed, child: child);
 }
 
 Widget myTextFormField({required TextEditingController controller, required String labelText, required String Function(String?)? validator}) {
   return TextFormField(
     controller: controller,
     decoration: InputDecoration(
-        labelText: labelText,
-        filled: true,
+      labelText: labelText,
+      filled: true,
     ),
     validator: validator,
   );
