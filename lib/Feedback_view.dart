@@ -376,7 +376,7 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${feedback['user']} - ${feedback['document'] } ',
+                '${feedback['user']} - ${feedback['document']} - ${feedback['rating']}',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
               SizedBox(height: 25),
@@ -393,6 +393,7 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Center(
@@ -422,6 +423,13 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                     )
                         .toList(),
                     onChanged: (value) async {
+                      Map<String, int> institutionTable = {
+                        'City Hall': 0,
+                        'Municipal Police' : 1,
+                        'Court House' : 2,
+                        'D.R.P.C.I.V' : 3,
+                      };
+
 
                       int index = institutions.indexOf(selectedInstitution);
                       String indexString = index.toString();
@@ -431,11 +439,11 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                       for(Feedback fb in feedbackWaitedResult) {
                         Map<String,String> fedbec1 = {
                           'user': 'User${fb.userId}',
-                          //'rating' : fb.rating.toString(),
+                          'rating' : fb.rating.toString(),
                           'document': 'document column doesnt exist in db',
                           'comment':  fb.comment.toString(),
                         };
-                        feedbacks[index-1]['feedback'].add(fedbec1);
+                        feedbacks[institutionTable[value]!.toInt()]['feedback'].add(fedbec1);
                       }
                       print("dropdown bla $value");
                       print("this is indexString$indexString");
@@ -545,7 +553,7 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                                   (index) => DropdownMenuItem<int>(
                                 value: index,
                                 child: Text(
-                                  (index).toString(),
+                                  (index +1).toString(),
                                   textAlign: TextAlign.right,
                                 ),
                               ),
@@ -561,7 +569,7 @@ class _FeedbackVisualizationPageState extends State<FeedbackVisualizationPage> {
                           print("this is indexString $indexString");
                           Map<String,String> fedbec1 = {
                             'user': 'ME',
-                            //'rating' : ratingValue.toString(),
+                            'rating' : ratingValue.toString(),
                             'document': 'Complaint',
                             'comment':  feedbackController.text,
                           };

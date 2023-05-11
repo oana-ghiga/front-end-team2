@@ -100,17 +100,17 @@ class _MyRegistrationPageState extends State<MyRegistrationPage> {
                   String backendUrl = "http://127.0.0.1:6969/api/auth/register";
                   final response =
                   await http.post(Uri.parse(backendUrl), body: {
-                    'username': 'fraier',
-                    'password': 'fraier',
-                    'name': 'fraier',
-                    'surname': 'fraier',
-                    'email': 'fraier@fraier.com',
-                    'phone_number': '0012345681',
-                    'city': 'Fraieresti',
+                    'username': _usernameController.text,
+                    'password': _passwordController.text,
+                    'name': _nameController.text,
+                    'surname': _surnameController.text,
+                    'email': _emailController.text,
+                    'phone_number': _phoneNumberController.text,
+                    'city': _addressController.text,
                   });
                   if (response.statusCode == 200) {
                     // Bad request
-                    print("feedback added to db successfully");
+                    print("user added to db successfully");
                   }
                   else {
                     int statuscode = response.statusCode;

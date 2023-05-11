@@ -87,6 +87,9 @@ class LoginForm extends StatelessWidget {
 
     final screenWidth = MediaQuery.of(context).size.width;
 
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+
     return Container(
       height: screenWidth < 700 ? 420.0 : 550.0,
       width: screenWidth < 700 ? 320.0 : 450.0,
@@ -131,6 +134,7 @@ class LoginForm extends StatelessWidget {
             height: screenWidth < 700 ? 35 : 45,
             child: TextField(
               cursorColor: Login.borderColor,
+              controller: emailController,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                 enabledBorder: OutlineInputBorder(
@@ -176,6 +180,7 @@ class LoginForm extends StatelessWidget {
             height: screenWidth < 700 ? 35 : 45,
             child: TextField(
               obscureText: true,
+              controller: passwordController,
               cursorColor: Login.borderColor,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
@@ -300,120 +305,120 @@ class _TopBarState extends State<TopBar> {
               hovering1 = false;
             });
           },
-        child: ElevatedButton(
-          onPressed: () {
-            //home button press
-          },
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Login.primaryColor,
-              padding: EdgeInsets.symmetric(horizontal: 0.0)
-          ),
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: screenWidth < 700 ? 0.0 : 30.0),
-            child: Text(
-              'Home',
-              style: TextStyle(
-                  fontSize: screenWidth < 700 ? 13 : 17,
-                  color: hovering1 ? Login.borderColor : Colors.white
-              ),
-            ),
-          ),
-        ),
-        ),
-       MouseRegion(
-         onHover: (PointerEvent details){
-           setState(() {
-             hovering2 = true;
-           });
-         },
-         onExit: (PointerEvent details){
-           setState(() {
-             hovering2 = false;
-           });
-         },
-        child: ElevatedButton(
+          child: ElevatedButton(
             onPressed: () {
-              //institution button press
-            },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Login.primaryColor,
-                padding: EdgeInsets.symmetric(horizontal: 5.0)
-            ),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth < 700 ? 0.0 : 30.0),
-              child: Text(
-                'Institutions',
-                style: TextStyle(
-                    fontSize: screenWidth < 700 ? 13 : 17,
-                    color: hovering2 ? Login.borderColor : Colors.white
-                ),
-              ),
-            )
-        ),
-       ),
-       MouseRegion(
-          onHover: (PointerEvent details){
-          setState(() {
-          hovering3 = true;
-          });
-          },
-          onExit: (PointerEvent details){
-          setState(() {
-          hovering3 = false;
-          });
-          },
-        child: ElevatedButton(
-            onPressed: () {
-              //contact button press
-            },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Login.primaryColor,
-                padding: EdgeInsets.symmetric(horizontal: 5.0)
-            ),
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth < 700 ? 0.0 : 30.0),
-              child: Text(
-                'Contact',
-                style: TextStyle(
-                    fontSize: screenWidth < 700 ? 13 : 17,
-                    color: hovering3 ? Login.borderColor : Colors.white
-                ),
-              ),
-            )
-        ),
-       ),
-       MouseRegion(
-         onHover: (PointerEvent details){
-           setState(() {
-             hovering4 = true;
-           });
-         },
-         onExit: (PointerEvent details){
-           setState(() {
-             hovering4 = false;
-           });
-         },
-        child: ElevatedButton(
-            onPressed: () {
-              //My Account button press
+              //home button press
             },
             style: ElevatedButton.styleFrom(
                 backgroundColor: Login.primaryColor,
                 padding: EdgeInsets.symmetric(horizontal: 0.0)
             ),
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: screenWidth < 700 ? 7.0 : 30.0),
-
+              padding: EdgeInsets.symmetric(horizontal: screenWidth < 700 ? 0.0 : 30.0),
               child: Text(
-                'My Account',
+                'Home',
                 style: TextStyle(
                     fontSize: screenWidth < 700 ? 13 : 17,
-                    color: hovering4 ? Login.borderColor : Colors.white
+                    color: hovering1 ? Login.borderColor : Colors.white
                 ),
               ),
-            )
+            ),
+          ),
         ),
-       ),
+        MouseRegion(
+          onHover: (PointerEvent details){
+            setState(() {
+              hovering2 = true;
+            });
+          },
+          onExit: (PointerEvent details){
+            setState(() {
+              hovering2 = false;
+            });
+          },
+          child: ElevatedButton(
+              onPressed: () {
+                //institution button press
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Login.primaryColor,
+                  padding: EdgeInsets.symmetric(horizontal: 5.0)
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth < 700 ? 0.0 : 30.0),
+                child: Text(
+                  'Institutions',
+                  style: TextStyle(
+                      fontSize: screenWidth < 700 ? 13 : 17,
+                      color: hovering2 ? Login.borderColor : Colors.white
+                  ),
+                ),
+              )
+          ),
+        ),
+        MouseRegion(
+          onHover: (PointerEvent details){
+            setState(() {
+              hovering3 = true;
+            });
+          },
+          onExit: (PointerEvent details){
+            setState(() {
+              hovering3 = false;
+            });
+          },
+          child: ElevatedButton(
+              onPressed: () {
+                //contact button press
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Login.primaryColor,
+                  padding: EdgeInsets.symmetric(horizontal: 5.0)
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth < 700 ? 0.0 : 30.0),
+                child: Text(
+                  'Contact',
+                  style: TextStyle(
+                      fontSize: screenWidth < 700 ? 13 : 17,
+                      color: hovering3 ? Login.borderColor : Colors.white
+                  ),
+                ),
+              )
+          ),
+        ),
+        MouseRegion(
+          onHover: (PointerEvent details){
+            setState(() {
+              hovering4 = true;
+            });
+          },
+          onExit: (PointerEvent details){
+            setState(() {
+              hovering4 = false;
+            });
+          },
+          child: ElevatedButton(
+              onPressed: () {
+                //My Account button press
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Login.primaryColor,
+                  padding: EdgeInsets.symmetric(horizontal: 0.0)
+              ),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: screenWidth < 700 ? 7.0 : 30.0),
+
+                child: Text(
+                  'My Account',
+                  style: TextStyle(
+                      fontSize: screenWidth < 700 ? 13 : 17,
+                      color: hovering4 ? Login.borderColor : Colors.white
+                  ),
+                ),
+              )
+          ),
+        ),
       ],
     );
   }
